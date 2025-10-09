@@ -5,13 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Screening Kandidat Karyawan - exata group</title>
 
-    <link rel="icon" href="img/icon.ico "image/x-icon">
+    <link rel="icon" href="img/icon.ico" type="image/x-icon">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide-react@0.294.0/dist/lucide-react.js"></script>
     
     <!-- SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -63,6 +60,11 @@
             cursor: pointer;
             border-radius: 50%;
         }
+        .posisi-section {
+            border-top: 1px dashed #e5e7eb;
+            padding-top: 2rem;
+            margin-top: 2rem;
+        }
     </style>
 </head>
 <body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
@@ -91,7 +93,7 @@
                     <div class="w-1/3 border-t-2 border-gray-200 transition-all duration-500" id="progress-bar-2"></div>
                     <div id="step-indicator-3" class="step-indicator w-1/3 text-center">
                         <div class="w-10 h-10 mx-auto bg-gray-200 text-gray-500 rounded-full text-lg flex items-center justify-center">3</div>
-                        <p class="text-xs text-gray-500 mt-2">Keahlian</p>
+                        <p class="text-xs text-gray-500 mt-2">Spesifik</p>
                     </div>
                 </div>
             </div>
@@ -106,8 +108,17 @@
                             <input type="text" id="nama_lengkap" name="nama_lengkap" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" required>
                         </div>
                         <div>
-                            <label for="nama_panggilan" class="block text-sm font-medium text-gray-700 mb-1">Nama Panggilan</label>
-                            <input type="text" id="nama_panggilan" name="nama_panggilan" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" required>
+                            <label for="posisi" class="block text-sm font-medium text-gray-700 mb-1">Posisi yang Dilamar</label>
+                            <select id="posisi" name="posisi" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" required>
+                                <option value="" disabled selected>Pilih posisi...</option>
+                                <option value="Accounting & Finance">Accounting & Finance</option>
+                                <option value="HR Staff">HR Staff</option>
+                                <option value="Content Creator / Editor">Content Creator / Editor</option>
+                                <option value="Admin Sales">Admin Sales</option>
+                                <option value="Sales">Sales</option>
+                                <option value="Back Office (Office Boy)">Back Office (Office Boy)</option>
+                                <option value="IT Support">IT Support</option>
+                            </select>
                         </div>
                         <div>
                             <label for="tanggal_lahir" class="block text-sm font-medium text-gray-700 mb-1">Tanggal Lahir & Usia</label>
@@ -124,7 +135,6 @@
                         <div class="md:col-span-2">
                             <label for="alamat" class="block text-sm font-medium text-gray-700 mb-1">Alamat Domisili</label>
                             <textarea id="alamat" name="alamat" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" required placeholder="Jl. Merdeka No. 10, RT 01/RW 02..."></textarea>
-                            <p class="text-xs text-gray-500 mt-1">Anda bisa juga klik lokasi di Google Maps (opsional).</p>
                         </div>
                         <div>
                             <label for="nomor_hp" class="block text-sm font-medium text-gray-700 mb-1">Nomor HP Aktif</label>
@@ -135,8 +145,7 @@
                         </div>
                         <div>
                             <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Alamat Email Aktif</label>
-                            <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" required pattern=".+@gmail\.com$" placeholder="namaanda@gmail.com">
-                             <p class="text-xs text-red-500 mt-1 hidden" id="email-error">Email harus menggunakan @gmail.com</p>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" required pattern=".+@.+\..+" placeholder="namaanda@example.com">
                         </div>
                         <div>
                             <label for="pendidikan" class="block text-sm font-medium text-gray-700 mb-1">Pendidikan Terakhir</label>
@@ -219,13 +228,9 @@
                             <label for="status_pernikahan" class="block text-sm font-medium text-gray-700 mb-1">Status pernikahan & anak</label>
                             <textarea id="status_pernikahan" name="status_pernikahan" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" required placeholder="Contoh: Sudah menikah, anak 1 usia 2 tahun. / Belum menikah."></textarea>
                         </div>
-                         <div>
-                            <label for="media_sosial" class="block text-sm font-medium text-gray-700 mb-1">Platform media sosial yang paling sering digunakan?</label>
-                            <input type="text" id="media_sosial" name="media_sosial" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" required placeholder="Instagram, TikTok, YouTube, dll.">
-                        </div>
                         <div>
-                            <label for="akun_medsos" class="block text-sm font-medium text-gray-700 mb-1">Nama akun media sosial tersebut?</label>
-                            <input type="text" id="akun_medsos" name="akun_medsos" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" required placeholder="@usernameanda">
+                            <label for="akun_medsos" class="block text-sm font-medium text-gray-700 mb-1">Akun media sosial (Instagram/TikTok/Lainnya)?</label>
+                            <input type="text" id="akun_medsos" name="akun_medsos" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" required placeholder="@usernameanda (tidak di-private)">
                         </div>
                          <div>
                             <label for="ibarat_barang" class="block text-sm font-medium text-gray-700 mb-1">Jika kamu diibaratkan sebuah barang, barang apa yang menggambarkan dirimu? Jelaskan.</label>
@@ -240,7 +245,7 @@
                                 </div>
                            </div>
                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Bersedia ditempatkan di luar kota/negeri?</label>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Bersedia ditempatkan di luar kota?</label>
                                 <div class="flex items-center space-x-4">
                                     <label class="flex items-center"><input type="radio" name="bersedia_luar_kota" value="Ya" class="text-purple-600 focus:ring-purple-500" required> <span class="ml-2">Ya</span></label>
                                     <label class="flex items-center"><input type="radio" name="bersedia_luar_kota" value="Tidak" class="text-purple-600 focus:ring-purple-500"> <span class="ml-2">Tidak</span></label>
@@ -254,28 +259,155 @@
                 <div id="step-3" class="form-step">
                     <h2 class="text-xl font-semibold text-gray-700 mb-6 border-l-4 border-yellow-400 pl-4">C. Pertanyaan Spesifik</h2>
                     <div class="space-y-8">
+                        <!-- Pertanyaan Umum di Step 3 (jika ada) -->
                         <div>
-                            <label for="skill_excel" class="block text-sm font-medium text-gray-700 mb-2">Dari skala 1-10, bagaimana kemampuanmu dalam mengoperasikan Microsoft Excel?</label>
-                             <div class="flex items-center space-x-4">
-                                <input type="range" id="skill_excel" name="skill_excel" min="1" max="10" value="5" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer range-slider" oninput="this.nextElementSibling.textContent = this.value">
-                                <span class="font-bold text-purple-600 w-8 text-center text-lg">5</span>
-                             </div>
+                            <label for="sertifikat_umum" class="block text-sm font-medium text-gray-700 mb-1">Apakah kamu memiliki sertifikat atau pelatihan khusus (di luar posisi yang dilamar)? Jika ada, sebutkan.</label>
+                            <textarea id="sertifikat_umum" name="sertifikat_umum" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Tidak ada. / Ada, sertifikat Public Speaking."></textarea>
                         </div>
-                        <div>
-                            <label for="skill_gdrive" class="block text-sm font-medium text-gray-700 mb-2">Dari skala 1-10, bagaimana kemampuanmu dalam menggunakan Google Drive (Docs, Sheets, Slides, dll.)?</label>
-                             <div class="flex items-center space-x-4">
-                                <input type="range" id="skill_gdrive" name="skill_gdrive" min="1" max="10" value="5" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer range-slider" oninput="this.nextElementSibling.textContent = this.value">
-                                <span class="font-bold text-purple-600 w-8 text-center text-lg">5</span>
-                             </div>
+                        
+                        <!-- SECTIONS DINAMIS BERDASARKAN POSISI -->
+                        
+                        <!-- Accounting & Finance -->
+                        <div id="section-accountingfinance" class="posisi-section space-y-6" style="display: none;">
+                            <h3 class="font-semibold text-lg text-gray-800">Khusus Accounting & Finance</h3>
+                            <div>
+                                <label for="mahir_software_akuntansi" class="block text-sm font-medium text-gray-700 mb-2">Seberapa mahir kamu menggunakan software akuntansi (Accurate, Jurnal, Excel)? (Skala 1-10)</label>
+                                <div class="flex items-center space-x-4">
+                                    <input type="range" id="mahir_software_akuntansi" name="mahir_software_akuntansi" min="1" max="10" value="5" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer range-slider" oninput="this.nextElementSibling.textContent = this.value">
+                                    <span class="font-bold text-purple-600 w-8 text-center text-lg">5</span>
+                                </div>
+                            </div>
+                            <div>
+                                <label for="pengalaman_laporan_keuangan" class="block text-sm font-medium text-gray-700 mb-1">Pernahkah kamu membuat laporan keuangan lengkap (neraca, laba rugi, arus kas)? Jelaskan.</label>
+                                <textarea id="pengalaman_laporan_keuangan" name="pengalaman_laporan_keuangan" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Ya, pernah saat bekerja di... / Belum pernah secara profesional."></textarea>
+                            </div>
+                            <div>
+                                <label for="pengalaman_accounting" class="block text-sm font-medium text-gray-700 mb-1">Berapa lama pengalamanmu di bidang accounting/finance?</label>
+                                <input type="text" id="pengalaman_accounting" name="pengalaman_accounting" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Contoh: 1 tahun 6 bulan">
+                            </div>
+                            <div>
+                                <label for="sertifikat_akuntansi" class="block text-sm font-medium text-gray-700 mb-1">Sebutkan sertifikat atau pelatihan akuntansi (jika ada).</label>
+                                <input type="text" id="sertifikat_akuntansi" name="sertifikat_akuntansi" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Brevet A & B, dll. / Tidak ada.">
+                            </div>
                         </div>
-                        <div>
-                            <label for="sertifikat" class="block text-sm font-medium text-gray-700 mb-1">Apakah kamu memiliki sertifikat atau pelatihan khusus yang relevan? Jika ada, sebutkan.</label>
-                            <textarea id="sertifikat" name="sertifikat" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Tidak ada. / Ada, sertifikat Digital Marketing dari Google."></textarea>
+
+                        <!-- HR Staff -->
+                        <div id="section-hrstaff" class="posisi-section space-y-6" style="display: none;">
+                             <h3 class="font-semibold text-lg text-gray-800">Khusus HR Staff</h3>
+                            <div>
+                                <label for="proses_hr_dikuasai" class="block text-sm font-medium text-gray-700 mb-1">Apa saja proses HR yang kamu kuasai? (Rekrutmen, Payroll, BPJS, Training, dll.)</label>
+                                <input type="text" id="proses_hr_dikuasai" name="proses_hr_dikuasai" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Rekrutmen, Payroll, ...">
+                            </div>
+                             <div>
+                                <label for="pengalaman_hr" class="block text-sm font-medium text-gray-700 mb-1">Berapa lama pengalamanmu di bidang HR?</label>
+                                <input type="text" id="pengalaman_hr" name="pengalaman_hr" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Contoh: 2 tahun">
+                            </div>
+                            <div>
+                                <label for="mahir_excel_hr" class="block text-sm font-medium text-gray-700 mb-2">Seberapa mahir kamu menggunakan Ms. Excel untuk data karyawan? (Skala 1–10)</label>
+                                 <div class="flex items-center space-x-4">
+                                    <input type="range" id="mahir_excel_hr" name="mahir_excel_hr" min="1" max="10" value="5" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer range-slider" oninput="this.nextElementSibling.textContent = this.value">
+                                    <span class="font-bold text-purple-600 w-8 text-center text-lg">5</span>
+                                 </div>
+                            </div>
+                            <div>
+                                <label for="pengalaman_hris" class="block text-sm font-medium text-gray-700 mb-1">Apakah kamu pernah menggunakan HRIS? Sebutkan nama platformnya.</label>
+                                <input type="text" id="pengalaman_hris" name="pengalaman_hris" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Talenta, Gadjian, dll. / Belum pernah.">
+                            </div>
                         </div>
-                        <div>
-                            <label for="workshop" class="block text-sm font-medium text-gray-700 mb-1">Apakah kamu pernah mengikuti workshop tertentu? Jika Iya, jelaskan.</label>
-                            <textarea id="workshop" name="workshop" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Tidak pernah. / Pernah, workshop Public Speaking tahun 2023."></textarea>
+                        
+                        <!-- Content Creator / Editor -->
+                        <div id="section-contentcreator/editor" class="posisi-section space-y-6" style="display: none;">
+                            <h3 class="font-semibold text-lg text-gray-800">Khusus Content Creator / Editor</h3>
+                            <div>
+                                <label for="software_editing" class="block text-sm font-medium text-gray-700 mb-1">Sebutkan software editing yang kamu kuasai (CapCut, Premiere Pro, After Effects, dll.)</label>
+                                <input type="text" id="software_editing" name="software_editing" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="CapCut, Adobe Premiere Pro, ...">
+                            </div>
+                            <div>
+                                <label for="bidang_konten" class="block text-sm font-medium text-gray-700 mb-1">Bidang konten apa yang paling kamu kuasai? (Produk, edukasi, vlog, review, dll.)</label>
+                                <input type="text" id="bidang_konten" name="bidang_konten" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Konten edukasi dan review produk.">
+                            </div>
+                            <div>
+                                <label for="link_portofolio" class="block text-sm font-medium text-gray-700 mb-1">Tautkan contoh hasil karya (video/foto/link portofolio).</label>
+                                <input type="url" id="link_portofolio" name="link_portofolio" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="https://instagram.com/karyasaya atau https://bit.ly/portofolio-anda">
+                            </div>
+                            <div>
+                                <label for="kekuatan_kreatif_teknis" class="block text-sm font-medium text-gray-700 mb-1">Apakah kamu lebih kuat di ide kreatif atau teknis editing?</label>
+                                <input type="text" id="kekuatan_kreatif_teknis" name="kekuatan_kreatif_teknis" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Lebih kuat di ide kreatif, tapi teknis juga bisa.">
+                            </div>
                         </div>
+                        
+                        <!-- Admin Sales -->
+                        <div id="section-adminsales" class="posisi-section space-y-6" style="display: none;">
+                            <h3 class="font-semibold text-lg text-gray-800">Khusus Admin Sales</h3>
+                            <div>
+                                <label for="kelola_data_pelanggan" class="block text-sm font-medium text-gray-700 mb-1">Apakah kamu terbiasa mengelola data pelanggan dan membuat laporan penjualan?</label>
+                                <input type="text" id="kelola_data_pelanggan" name="kelola_data_pelanggan" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Ya, sangat terbiasa. / Belum terlalu.">
+                            </div>
+                            <div>
+                                <label for="kuasai_software_admin" class="block text-sm font-medium text-gray-700 mb-1">Seberapa cepat kamu menguasai software administrasi (Excel, Spreadsheet, CRM)?</label>
+                                <input type="text" id="kuasai_software_admin" name="kuasai_software_admin" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Sangat cepat, biasanya 1-2 hari sudah paham dasar.">
+                            </div>
+                            <div>
+                                <label for="pengalaman_bantu_sales" class="block text-sm font-medium text-gray-700 mb-1">Ceritakan pengalamanmu dalam membantu tim sales.</label>
+                                <textarea id="pengalaman_bantu_sales" name="pengalaman_bantu_sales" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Saya biasa menyiapkan data prospek, follow up..."></textarea>
+                            </div>
+                        </div>
+                        
+                        <!-- Sales -->
+                        <div id="section-sales" class="posisi-section space-y-6" style="display: none;">
+                             <h3 class="font-semibold text-lg text-gray-800">Khusus Sales</h3>
+                            <div>
+                                <label for="pengalaman_sales_jenis" class="block text-sm font-medium text-gray-700 mb-1">Apakah kamu memiliki pengalaman door-to-door, telesales, atau B2B?</label>
+                                <input type="text" id="pengalaman_sales_jenis" name="pengalaman_sales_jenis" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Ya, pengalaman di telesales selama 1 tahun.">
+                            </div>
+                            <div>
+                                <label for="target_penjualan" class="block text-sm font-medium text-gray-700 mb-1">Seberapa besar target penjualan tertinggi yang pernah kamu capai?</label>
+                                <input type="text" id="target_penjualan" name="target_penjualan" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Rp 100.000.000 dalam sebulan.">
+                            </div>
+                            <div>
+                                <label for="punya_kendaraan" class="block text-sm font-medium text-gray-700 mb-1">Apakah kamu memiliki kendaraan pribadi untuk mobilitas?</label>
+                                <input type="text" id="punya_kendaraan" name="punya_kendaraan" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Ya, motor. / Tidak ada.">
+                            </div>
+                            <div>
+                                <label for="hadapi_penolakan" class="block text-sm font-medium text-gray-700 mb-1">Bagaimana caramu menghadapi penolakan pelanggan?</label>
+                                <textarea id="hadapi_penolakan" name="hadapi_penolakan" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Tetap tenang, mendengarkan alasannya, dan mencoba..."></textarea>
+                            </div>
+                        </div>
+                        
+                        <!-- Back Office (Office Boy) -->
+                        <div id="section-backoffice(officeboy)" class="posisi-section space-y-6" style="display: none;">
+                             <h3 class="font-semibold text-lg text-gray-800">Khusus Back Office (Office Boy)</h3>
+                            <div>
+                                <label for="pengalaman_kebersihan" class="block text-sm font-medium text-gray-700 mb-1">Apakah kamu berpengalaman dalam menjaga kebersihan dan kerapian kantor?</label>
+                                <input type="text" id="pengalaman_kebersihan" name="pengalaman_kebersihan" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Ya, sudah berpengalaman 2 tahun.">
+                            </div>
+                            <div>
+                                <label for="bisa_buat_minuman" class="block text-sm font-medium text-gray-700 mb-1">Bisakah kamu membuat kopi, teh, dan menyiapkan ruang meeting?</label>
+                                <input type="text" id="bisa_buat_minuman" name="bisa_buat_minuman" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Ya, bisa.">
+                            </div>
+                            <div>
+                                <label for="bisa_motor_kantor" class="block text-sm font-medium text-gray-700 mb-1">Apakah kamu bisa mengendarai motor untuk kebutuhan kantor?</label>
+                                <input type="text" id="bisa_motor_kantor" name="bisa_motor_kantor" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Ya, saya punya SIM C aktif.">
+                            </div>
+                        </div>
+                        
+                        <!-- IT Support -->
+                        <div id="section-itsupport" class="posisi-section space-y-6" style="display: none;">
+                            <h3 class="font-semibold text-lg text-gray-800">Khusus IT Support</h3>
+                            <div>
+                                <label for="mahir_troubleshooting" class="block text-sm font-medium text-gray-700 mb-1">Seberapa mahir kamu dalam mengatasi troubleshooting PC/laptop?</label>
+                                <input type="text" id="mahir_troubleshooting" name="mahir_troubleshooting" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Sangat mahir, bisa merakit PC dan install ulang OS.">
+                            </div>
+                            <div>
+                                <label for="paham_jaringan" class="block text-sm font-medium text-gray-700 mb-1">Apakah kamu paham jaringan (LAN/WiFi)?</label>
+                                <input type="text" id="paham_jaringan" name="paham_jaringan" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Paham dasar konfigurasi router dan kabel LAN.">
+                            </div>
+                             <div>
+                                <label for="pengalaman_monitoring_tools" class="block text-sm font-medium text-gray-700 mb-1">Pernahkah kamu menggunakan tools monitoring sistem?</label>
+                                <input type="text" id="pengalaman_monitoring_tools" name="pengalaman_monitoring_tools" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Pernah, menggunakan Zabbix. / Belum pernah.">
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
                 
@@ -297,7 +429,8 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby5H2oCPRrHlRsZ78y8ZZ5ELwZbUbfFrAp29BtbbDYrnHt1w--I1UmFH-q5tQ8WYzl3/exec';
+            // GANTI DENGAN URL DEPLOYMENT GOOGLE APPS SCRIPT ANDA
+            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby4L6DCH4BmyA4kbHhqpA6XweD14Mdrk_S9v28ps1RSrWw0dIsD76iZi-SP7_tPq_wq/exec';
             
             const form = document.getElementById('screeningForm');
             const steps = Array.from(document.querySelectorAll('.form-step'));
@@ -377,7 +510,7 @@
             
             const validateStep = (stepIndex) => {
                 const currentStepDiv = steps[stepIndex];
-                const inputs = currentStepDiv.querySelectorAll('input[required], select[required], textarea[required]');
+                const inputs = currentStepDiv.querySelectorAll('input:not([disabled])[required], select:not([disabled])[required], textarea:not([disabled])[required]');
                 let isValid = true;
                 
                 inputs.forEach(input => {
@@ -395,9 +528,6 @@
                      
                     if (input.type === 'email' && !input.checkValidity()) {
                         isInputValid = false;
-                        document.getElementById('email-error').classList.remove('hidden');
-                    } else if (input.type === 'email') {
-                         document.getElementById('email-error').classList.add('hidden');
                     }
                     
                     if (!isInputValid) {
@@ -459,11 +589,8 @@
 
                 const formData = new FormData(this);
                 
-                // Format nomor HP
                 let phone = formData.get('nomor_hp').replace(/[^0-9]/g, '');
-                if (phone.startsWith('0')) {
-                    phone = phone.substring(1);
-                }
+                if (phone.startsWith('0')) { phone = phone.substring(1); }
                 formData.set('nomor_hp', `+62${phone}`);
 
                 fetch(SCRIPT_URL, {
@@ -482,6 +609,8 @@
                         form.reset();
                         currentStep = 0;
                         showStep(0);
+                        // Hide all dynamic sections again after reset
+                        document.querySelectorAll(".posisi-section").forEach(sec => sec.style.display = "none");
                     } else {
                         throw new Error(data.message || 'Terjadi kesalahan.');
                     }
@@ -490,9 +619,56 @@
                     Swal.fire({
                         icon: 'error',
                         title: 'Gagal Mengirim',
-                        text: 'Terjadi kesalahan saat mengirim data. Silakan coba lagi.',
+                        text: `Terjadi kesalahan saat mengirim data: ${error.message}. Silakan coba lagi.`,
                         confirmButtonColor: '#FBBF24'
                     });
+                });
+            });
+            
+            // --- SCRIPT LOGIKA DINAMIS UNTUK POSISI ---
+            document.getElementById("posisi").addEventListener("change", function() {
+                const posisi = this.value;
+                
+                // Sembunyikan dan non-aktifkan semua input di section spesifik
+                document.querySelectorAll(".posisi-section").forEach(sec => {
+                    sec.style.display = "none";
+                    sec.querySelectorAll('input, textarea, select').forEach(input => {
+                        input.disabled = true;
+                        input.required = false; // Hapus 'required' agar validasi lolos
+                    });
+                });
+
+                if (posisi) {
+                    // Buat ID target dari value
+                    const id = `section-${posisi.replace(/\s*&\s*|\s*\/\s*|\s*\(|\s*\)|\s+/g, '').toLowerCase()}`;
+                    const el = document.getElementById(id);
+
+                    if (el) {
+                        // Tampilkan section yang relevan dan aktifkan inputnya
+                        el.style.display = "block";
+                        el.querySelectorAll('input, textarea, select').forEach(input => {
+                            input.disabled = false;
+                            // Tambahkan 'required' jika elemen aslinya punya atribut tersebut
+                            if(input.hasAttribute('data-required')) {
+                               input.required = true;
+                            }
+                        });
+                        
+                        // Animasi
+                        gsap.fromTo(el, {opacity: 0, y: 20}, {opacity: 1, y: 0, duration: 0.5});
+                    }
+                }
+            });
+            
+            // Inisialisasi: pastikan semua section dinamis dinonaktifkan saat pertama kali load
+            document.querySelectorAll(".posisi-section").forEach(sec => {
+                sec.querySelectorAll('input, textarea, select').forEach(input => {
+                    input.disabled = true;
+                    // Simpan status 'required' asli di atribut data-*
+                    if(input.required) {
+                        input.setAttribute('data-required', 'true');
+                        input.required = false;
+                    }
                 });
             });
 
