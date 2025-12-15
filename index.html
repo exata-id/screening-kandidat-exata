@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Screening Kandidat Karyawan - exata group</title>
 
     <link rel="icon" href="img/icon.ico" type="image/x-icon">
-    
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
+
     <!-- GSAP for Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
@@ -24,42 +25,53 @@
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
         body {
             font-family: 'Inter', sans-serif;
         }
+
         .form-step {
             display: none;
             transform: translateX(20px);
             opacity: 0;
             transition: all 0.3s ease-in-out;
         }
+
         .form-step.active {
             display: block;
         }
+
         .input-focus-ring {
             transition: all 0.2s ease-in-out;
         }
+
         .input-focus-ring:focus {
             outline: none;
-            box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.4); /* Kuning-orange accent */
+            box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.4);
+            /* Kuning-orange accent */
             border-color: #FBBF24;
         }
+
         .range-slider::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
             width: 20px;
             height: 20px;
-            background: #8B5CF6; /* Ungu accent */
+            background: #8B5CF6;
+            /* Ungu accent */
             cursor: pointer;
             border-radius: 50%;
         }
+
         .range-slider::-moz-range-thumb {
             width: 20px;
             height: 20px;
-            background: #8B5CF6; /* Ungu accent */
+            background: #8B5CF6;
+            /* Ungu accent */
             cursor: pointer;
             border-radius: 50%;
         }
+
         .posisi-section {
             border-top: 1px dashed #e5e7eb;
             padding-top: 2rem;
@@ -67,32 +79,40 @@
         }
     </style>
 </head>
+
 <body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
 
     <div class="w-full max-w-3xl bg-white rounded-2xl shadow-xl overflow-hidden">
         <div class="p-8">
             <!-- Header -->
             <div class="text-center mb-8">
-                <img src="img/header.png" alt="Header Screening Kandidat" class="w-full max-w-full mx-auto mb-6 rounded-lg shadow-md">
+                <img src="img/header.png" alt="Header Screening Kandidat"
+                    class="w-full max-w-full mx-auto mb-6 rounded-lg shadow-md">
                 <h1 class="text-3xl font-bold text-gray-800">Screening Kandidat Karyawan - EXATA GROUP</h1>
                 <p class="text-gray-500 mt-2">Silakan isi data berikut dengan jujur dan benar.</p>
             </div>
-            
+
             <!-- Progress Bar -->
             <div class="w-full mb-8">
                 <div class="flex items-center justify-between">
                     <div id="step-indicator-1" class="step-indicator active w-1/3 text-center">
-                        <div class="w-10 h-10 mx-auto bg-purple-600 text-white rounded-full text-lg flex items-center justify-center">1</div>
+                        <div
+                            class="w-10 h-10 mx-auto bg-purple-600 text-white rounded-full text-lg flex items-center justify-center">
+                            1</div>
                         <p class="text-xs text-gray-600 mt-2 font-semibold">Identitas</p>
                     </div>
                     <div class="w-1/3 border-t-2 border-gray-200 transition-all duration-500" id="progress-bar-1"></div>
                     <div id="step-indicator-2" class="step-indicator w-1/3 text-center">
-                        <div class="w-10 h-10 mx-auto bg-gray-200 text-gray-500 rounded-full text-lg flex items-center justify-center">2</div>
+                        <div
+                            class="w-10 h-10 mx-auto bg-gray-200 text-gray-500 rounded-full text-lg flex items-center justify-center">
+                            2</div>
                         <p class="text-xs text-gray-500 mt-2">Umum</p>
                     </div>
                     <div class="w-1/3 border-t-2 border-gray-200 transition-all duration-500" id="progress-bar-2"></div>
                     <div id="step-indicator-3" class="step-indicator w-1/3 text-center">
-                        <div class="w-10 h-10 mx-auto bg-gray-200 text-gray-500 rounded-full text-lg flex items-center justify-center">3</div>
+                        <div
+                            class="w-10 h-10 mx-auto bg-gray-200 text-gray-500 rounded-full text-lg flex items-center justify-center">
+                            3</div>
                         <p class="text-xs text-gray-500 mt-2">Spesifik</p>
                     </div>
                 </div>
@@ -101,15 +121,20 @@
             <form id="screeningForm" novalidate>
                 <!-- Step 1: Identitas Diri -->
                 <div id="step-1" class="form-step active">
-                    <h2 class="text-xl font-semibold text-gray-700 mb-6 border-l-4 border-yellow-400 pl-4">A. Identitas Diri</h2>
+                    <h2 class="text-xl font-semibold text-gray-700 mb-6 border-l-4 border-yellow-400 pl-4">A. Identitas
+                        Diri</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label for="nama_lengkap" class="block text-sm font-medium text-gray-700 mb-1">Nama Lengkap (sesuai KTP)</label>
-                            <input type="text" id="nama_lengkap" name="nama_lengkap" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" required>
+                            <label for="nama_lengkap" class="block text-sm font-medium text-gray-700 mb-1">Nama Lengkap
+                                (sesuai KTP)</label>
+                            <input type="text" id="nama_lengkap" name="nama_lengkap"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" required>
                         </div>
                         <div>
-                            <label for="posisi" class="block text-sm font-medium text-gray-700 mb-1">Posisi yang Dilamar</label>
-                            <select id="posisi" name="posisi" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" required>
+                            <label for="posisi" class="block text-sm font-medium text-gray-700 mb-1">Posisi yang
+                                Dilamar</label>
+                            <select id="posisi" name="posisi"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" required>
                                 <option value="" disabled selected>Pilih posisi...</option>
                                 <option value="Accounting & Finance">Accounting & Finance</option>
                                 <option value="HR Staff">HR Staff</option>
@@ -121,35 +146,51 @@
                             </select>
                         </div>
                         <div>
-                            <label for="tanggal_lahir" class="block text-sm font-medium text-gray-700 mb-1">Tanggal Lahir & Usia</label>
-                            <input type="text" id="tanggal_lahir" name="tanggal_lahir" placeholder="Pilih tanggal..." class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring bg-white" required>
+                            <label for="tanggal_lahir" class="block text-sm font-medium text-gray-700 mb-1">Tanggal
+                                Lahir & Usia</label>
+                            <input type="text" id="tanggal_lahir" name="tanggal_lahir" placeholder="Pilih tanggal..."
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring bg-white"
+                                required>
                         </div>
-                         <div>
-                            <label for="jenis_kelamin" class="block text-sm font-medium text-gray-700 mb-1">Jenis Kelamin</label>
-                            <select id="jenis_kelamin" name="jenis_kelamin" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" required>
+                        <div>
+                            <label for="jenis_kelamin" class="block text-sm font-medium text-gray-700 mb-1">Jenis
+                                Kelamin</label>
+                            <select id="jenis_kelamin" name="jenis_kelamin"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" required>
                                 <option value="" disabled selected>Pilih jenis kelamin</option>
                                 <option value="Laki-laki">Laki-laki</option>
                                 <option value="Perempuan">Perempuan</option>
                             </select>
                         </div>
                         <div class="md:col-span-2">
-                            <label for="alamat" class="block text-sm font-medium text-gray-700 mb-1">Alamat Domisili</label>
-                            <textarea id="alamat" name="alamat" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" required placeholder="Jl. Merdeka No. 10, RT 01/RW 02..."></textarea>
+                            <label for="alamat" class="block text-sm font-medium text-gray-700 mb-1">Alamat
+                                Domisili</label>
+                            <textarea id="alamat" name="alamat" rows="3"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" required
+                                placeholder="Jl. Merdeka No. 10, RT 01/RW 02..."></textarea>
                         </div>
                         <div>
-                            <label for="nomor_hp" class="block text-sm font-medium text-gray-700 mb-1">Nomor HP Aktif</label>
+                            <label for="nomor_hp" class="block text-sm font-medium text-gray-700 mb-1">Nomor HP
+                                Aktif</label>
                             <div class="relative">
                                 <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">+62</span>
-                                <input type="tel" id="nomor_hp" name="nomor_hp" class="w-full pl-12 pr-4 py-2 border border-gray-300 rounded-lg input-focus-ring" required placeholder="81234567890">
+                                <input type="tel" id="nomor_hp" name="nomor_hp"
+                                    class="w-full pl-12 pr-4 py-2 border border-gray-300 rounded-lg input-focus-ring"
+                                    required placeholder="81234567890">
                             </div>
                         </div>
                         <div>
-                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Alamat Email Aktif</label>
-                            <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" required pattern=".+@.+\..+" placeholder="namaanda@example.com">
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Alamat Email
+                                Aktif</label>
+                            <input type="email" id="email" name="email"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" required
+                                pattern=".+@.+\..+" placeholder="namaanda@example.com">
                         </div>
                         <div>
-                            <label for="pendidikan" class="block text-sm font-medium text-gray-700 mb-1">Pendidikan Terakhir</label>
-                            <select id="pendidikan" name="pendidikan" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" required>
+                            <label for="pendidikan" class="block text-sm font-medium text-gray-700 mb-1">Pendidikan
+                                Terakhir</label>
+                            <select id="pendidikan" name="pendidikan"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" required>
                                 <option value="" disabled selected>Pilih pendidikan</option>
                                 <option>SMA/SMK Sederajat</option>
                                 <option>D3</option>
@@ -159,31 +200,46 @@
                             </select>
                         </div>
                         <div>
-                            <label for="jurusan" class="block text-sm font-medium text-gray-700 mb-1">Jurusan / Program Studi</label>
-                            <input type="text" id="jurusan" name="jurusan" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" required>
+                            <label for="jurusan" class="block text-sm font-medium text-gray-700 mb-1">Jurusan / Program
+                                Studi</label>
+                            <input type="text" id="jurusan" name="jurusan"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" required>
                         </div>
-                         <div class="md:col-span-2">
-                            <label for="sedang_bekerja" class="block text-sm font-medium text-gray-700 mb-1">Apakah saat ini sedang bekerja?</label>
-                            <textarea id="sedang_bekerja" name="sedang_bekerja" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" required placeholder="Contoh: Ya, di PT. Maju Jaya sebagai Staff Admin. / Tidak."></textarea>
+                        <div class="md:col-span-2">
+                            <label for="sedang_bekerja" class="block text-sm font-medium text-gray-700 mb-1">Apakah saat
+                                ini sedang bekerja?</label>
+                            <textarea id="sedang_bekerja" name="sedang_bekerja" rows="2"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" required
+                                placeholder="Contoh: Ya, di PT. Maju Jaya sebagai Staff Admin. / Tidak."></textarea>
                         </div>
                     </div>
                 </div>
 
                 <!-- Step 2: Pertanyaan Umum -->
                 <div id="step-2" class="form-step">
-                    <h2 class="text-xl font-semibold text-gray-700 mb-6 border-l-4 border-yellow-400 pl-4">B. Pertanyaan Umum</h2>
+                    <h2 class="text-xl font-semibold text-gray-700 mb-6 border-l-4 border-yellow-400 pl-4">B. Pertanyaan
+                        Umum</h2>
                     <div class="space-y-6">
                         <div>
-                            <label for="daerah_tinggal" class="block text-sm font-medium text-gray-700 mb-1">Saat ini kamu tinggal di daerah mana?</label>
-                            <input type="text" id="daerah_tinggal" name="daerah_tinggal" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" required placeholder="Contoh: Bekasi Timur, Jakarta Selatan">
+                            <label for="daerah_tinggal" class="block text-sm font-medium text-gray-700 mb-1">Saat ini
+                                kamu tinggal di daerah mana?</label>
+                            <input type="text" id="daerah_tinggal" name="daerah_tinggal"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" required
+                                placeholder="Contoh: Bekasi Timur, Jakarta Selatan">
                         </div>
                         <div>
-                            <label for="estimasi_perjalanan" class="block text-sm font-medium text-gray-700 mb-1">Estimasi lama perjalanan dari rumah ke kantor Exata dengan motor? (Cek Google Maps)</label>
-                            <input type="text" id="estimasi_perjalanan" name="estimasi_perjalanan" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" required placeholder="Contoh: 30 menit">
+                            <label for="estimasi_perjalanan"
+                                class="block text-sm font-medium text-gray-700 mb-1">Estimasi lama perjalanan dari rumah
+                                ke kantor Exata dengan motor? (Cek Google Maps)</label>
+                            <input type="text" id="estimasi_perjalanan" name="estimasi_perjalanan"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" required
+                                placeholder="Contoh: 30 menit">
                         </div>
-                         <div>
-                            <label for="pilihan_domisili" class="block text-sm font-medium text-gray-700 mb-1">Jika domisili di luar Bekasi, apakah memilih pulang-pergi atau kost?</label>
-                            <select id="pilihan_domisili" name="pilihan_domisili" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" required>
+                        <div>
+                            <label for="pilihan_domisili" class="block text-sm font-medium text-gray-700 mb-1">Jika
+                                domisili di luar Bekasi, apakah memilih pulang-pergi atau kost?</label>
+                            <select id="pilihan_domisili" name="pilihan_domisili"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" required>
                                 <option value="" disabled selected>Pilih salah satu</option>
                                 <option>Pulang-Pergi</option>
                                 <option>Kost di sekitar kantor</option>
@@ -191,237 +247,415 @@
                             </select>
                         </div>
                         <div class="grid grid-cols-2 gap-6">
-                           <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Bisa mengendarai motor?</label>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Bisa mengendarai
+                                    motor?</label>
                                 <div class="flex items-center space-x-4">
-                                    <label class="flex items-center"><input type="radio" name="bisa_motor" value="Ya" class="text-purple-600 focus:ring-purple-500" required> <span class="ml-2">Ya</span></label>
-                                    <label class="flex items-center"><input type="radio" name="bisa_motor" value="Tidak" class="text-purple-600 focus:ring-purple-500"> <span class="ml-2">Tidak</span></label>
+                                    <label class="flex items-center"><input type="radio" name="bisa_motor" value="Ya"
+                                            class="text-purple-600 focus:ring-purple-500" required> <span
+                                            class="ml-2">Ya</span></label>
+                                    <label class="flex items-center"><input type="radio" name="bisa_motor" value="Tidak"
+                                            class="text-purple-600 focus:ring-purple-500"> <span
+                                            class="ml-2">Tidak</span></label>
                                 </div>
-                           </div>
-                           <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Memiliki SIM C aktif?</label>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Memiliki SIM C
+                                    aktif?</label>
                                 <div class="flex items-center space-x-4">
-                                    <label class="flex items-center"><input type="radio" name="punya_sim_c" value="Ya" class="text-purple-600 focus:ring-purple-500" required> <span class="ml-2">Ya</span></label>
-                                    <label class="flex items-center"><input type="radio" name="punya_sim_c" value="Tidak" class="text-purple-600 focus:ring-purple-500"> <span class="ml-2">Tidak</span></label>
+                                    <label class="flex items-center"><input type="radio" name="punya_sim_c" value="Ya"
+                                            class="text-purple-600 focus:ring-purple-500" required> <span
+                                            class="ml-2">Ya</span></label>
+                                    <label class="flex items-center"><input type="radio" name="punya_sim_c"
+                                            value="Tidak" class="text-purple-600 focus:ring-purple-500"> <span
+                                            class="ml-2">Tidak</span></label>
                                 </div>
-                           </div>
-                           <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Bisa mengendarai mobil?</label>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Bisa mengendarai
+                                    mobil?</label>
                                 <div class="flex items-center space-x-4">
-                                    <label class="flex items-center"><input type="radio" name="bisa_mobil" value="Ya" class="text-purple-600 focus:ring-purple-500" required> <span class="ml-2">Ya</span></label>
-                                    <label class="flex items-center"><input type="radio" name="bisa_mobil" value="Tidak" class="text-purple-600 focus:ring-purple-500"> <span class="ml-2">Tidak</span></label>
+                                    <label class="flex items-center"><input type="radio" name="bisa_mobil" value="Ya"
+                                            class="text-purple-600 focus:ring-purple-500" required> <span
+                                            class="ml-2">Ya</span></label>
+                                    <label class="flex items-center"><input type="radio" name="bisa_mobil" value="Tidak"
+                                            class="text-purple-600 focus:ring-purple-500"> <span
+                                            class="ml-2">Tidak</span></label>
                                 </div>
-                           </div>
-                           <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Memiliki SIM A aktif?</label>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Memiliki SIM A
+                                    aktif?</label>
                                 <div class="flex items-center space-x-4">
-                                    <label class="flex items-center"><input type="radio" name="punya_sim_a" value="Ya" class="text-purple-600 focus:ring-purple-500" required> <span class="ml-2">Ya</span></label>
-                                    <label class="flex items-center"><input type="radio" name="punya_sim_a" value="Tidak" class="text-purple-600 focus:ring-purple-500"> <span class="ml-2">Tidak</span></label>
+                                    <label class="flex items-center"><input type="radio" name="punya_sim_a" value="Ya"
+                                            class="text-purple-600 focus:ring-purple-500" required> <span
+                                            class="ml-2">Ya</span></label>
+                                    <label class="flex items-center"><input type="radio" name="punya_sim_a"
+                                            value="Tidak" class="text-purple-600 focus:ring-purple-500"> <span
+                                            class="ml-2">Tidak</span></label>
                                 </div>
-                           </div>
+                            </div>
                         </div>
                         <div>
-                            <label for="status_anak" class="block text-sm font-medium text-gray-700 mb-1">Anak ke berapa dari berapa bersaudara?</label>
-                            <input type="text" id="status_anak" name="status_anak" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" required placeholder="Contoh: 2 dari 3 bersaudara">
+                            <label for="status_anak" class="block text-sm font-medium text-gray-700 mb-1">Anak ke berapa
+                                dari berapa bersaudara?</label>
+                            <input type="text" id="status_anak" name="status_anak"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" required
+                                placeholder="Contoh: 2 dari 3 bersaudara">
                         </div>
                         <div>
-                            <label for="status_pernikahan" class="block text-sm font-medium text-gray-700 mb-1">Status pernikahan & anak</label>
-                            <textarea id="status_pernikahan" name="status_pernikahan" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" required placeholder="Contoh: Sudah menikah, anak 1 usia 2 tahun. / Belum menikah."></textarea>
+                            <label for="status_pernikahan" class="block text-sm font-medium text-gray-700 mb-1">Status
+                                pernikahan & anak</label>
+                            <textarea id="status_pernikahan" name="status_pernikahan" rows="2"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" required
+                                placeholder="Contoh: Sudah menikah, anak 1 usia 2 tahun. / Belum menikah."></textarea>
                         </div>
                         <div>
-                            <label for="akun_medsos" class="block text-sm font-medium text-gray-700 mb-1">Akun media sosial (Instagram/TikTok/Lainnya)?</label>
-                            <input type="text" id="akun_medsos" name="akun_medsos" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" required placeholder="@usernameanda (tidak di-private)">
+                            <label for="akun_medsos" class="block text-sm font-medium text-gray-700 mb-1">Akun media
+                                sosial (Instagram/TikTok/Lainnya)?</label>
+                            <input type="text" id="akun_medsos" name="akun_medsos"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" required
+                                placeholder="@usernameanda (tidak di-private)">
                         </div>
-                         <div>
-                            <label for="ibarat_barang" class="block text-sm font-medium text-gray-700 mb-1">Jika kamu diibaratkan sebuah barang, barang apa yang menggambarkan dirimu? Jelaskan.</label>
-                            <textarea id="ibarat_barang" name="ibarat_barang" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" required></textarea>
+                        <div>
+                            <label for="ibarat_barang" class="block text-sm font-medium text-gray-700 mb-1">Jika kamu
+                                diibaratkan sebuah barang, barang apa yang menggambarkan dirimu? Jelaskan.</label>
+                            <textarea id="ibarat_barang" name="ibarat_barang" rows="3"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring"
+                                required></textarea>
                         </div>
                         <div class="grid grid-cols-2 gap-6">
-                           <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Bersedia bekerja lembur?</label>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Bersedia bekerja
+                                    lembur?</label>
                                 <div class="flex items-center space-x-4">
-                                    <label class="flex items-center"><input type="radio" name="bersedia_lembur" value="Ya" class="text-purple-600 focus:ring-purple-500" required> <span class="ml-2">Ya</span></label>
-                                    <label class="flex items-center"><input type="radio" name="bersedia_lembur" value="Tidak" class="text-purple-600 focus:ring-purple-500"> <span class="ml-2">Tidak</span></label>
+                                    <label class="flex items-center"><input type="radio" name="bersedia_lembur"
+                                            value="Ya" class="text-purple-600 focus:ring-purple-500" required> <span
+                                            class="ml-2">Ya</span></label>
+                                    <label class="flex items-center"><input type="radio" name="bersedia_lembur"
+                                            value="Tidak" class="text-purple-600 focus:ring-purple-500"> <span
+                                            class="ml-2">Tidak</span></label>
                                 </div>
-                           </div>
-                           <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Bersedia ditempatkan di luar kota?</label>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Bersedia ditempatkan di luar
+                                    kota?</label>
                                 <div class="flex items-center space-x-4">
-                                    <label class="flex items-center"><input type="radio" name="bersedia_luar_kota" value="Ya" class="text-purple-600 focus:ring-purple-500" required> <span class="ml-2">Ya</span></label>
-                                    <label class="flex items-center"><input type="radio" name="bersedia_luar_kota" value="Tidak" class="text-purple-600 focus:ring-purple-500"> <span class="ml-2">Tidak</span></label>
+                                    <label class="flex items-center"><input type="radio" name="bersedia_luar_kota"
+                                            value="Ya" class="text-purple-600 focus:ring-purple-500" required> <span
+                                            class="ml-2">Ya</span></label>
+                                    <label class="flex items-center"><input type="radio" name="bersedia_luar_kota"
+                                            value="Tidak" class="text-purple-600 focus:ring-purple-500"> <span
+                                            class="ml-2">Tidak</span></label>
                                 </div>
-                           </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Step 3: Pertanyaan Spesifik -->
                 <div id="step-3" class="form-step">
-                    <h2 class="text-xl font-semibold text-gray-700 mb-6 border-l-4 border-yellow-400 pl-4">C. Pertanyaan Spesifik</h2>
+                    <h2 class="text-xl font-semibold text-gray-700 mb-6 border-l-4 border-yellow-400 pl-4">C. Pertanyaan
+                        Spesifik</h2>
                     <div class="space-y-8">
                         <!-- Pertanyaan Umum di Step 3 (jika ada) -->
                         <div>
-                            <label for="sertifikat_umum" class="block text-sm font-medium text-gray-700 mb-1">Apakah kamu memiliki sertifikat atau pelatihan khusus (di luar posisi yang dilamar)? Jika ada, sebutkan.</label>
-                            <textarea id="sertifikat_umum" name="sertifikat_umum" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Tidak ada. / Ada, sertifikat Public Speaking."></textarea>
+                            <label for="sertifikat_umum" class="block text-sm font-medium text-gray-700 mb-1">Apakah
+                                kamu memiliki sertifikat atau pelatihan khusus (di luar posisi yang dilamar)? Jika ada,
+                                sebutkan.</label>
+                            <textarea id="sertifikat_umum" name="sertifikat_umum" rows="3"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring"
+                                placeholder="Tidak ada. / Ada, sertifikat Public Speaking."></textarea>
                         </div>
-                        
+
                         <!-- SECTIONS DINAMIS BERDASARKAN POSISI -->
-                        
+
                         <!-- Accounting & Finance -->
                         <div id="section-accountingfinance" class="posisi-section space-y-6" style="display: none;">
                             <h3 class="font-semibold text-lg text-gray-800">Khusus Accounting & Finance</h3>
                             <div>
-                                <label for="mahir_software_akuntansi" class="block text-sm font-medium text-gray-700 mb-2">Seberapa mahir kamu menggunakan software akuntansi (Accurate, Jurnal, Excel)? (Skala 1-10)</label>
+                                <label for="mahir_accurate"
+                                    class="block text-sm font-medium text-gray-700 mb-2">Seberapa mahir kamu menggunakan
+                                    software Accurate? (Skala 1-10)</label>
                                 <div class="flex items-center space-x-4">
-                                    <input type="range" id="mahir_software_akuntansi" name="mahir_software_akuntansi" min="1" max="10" value="5" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer range-slider" oninput="this.nextElementSibling.textContent = this.value">
+                                    <input type="range" id="mahir_accurate" name="mahir_accurate" min="1" max="10"
+                                        value="5"
+                                        class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer range-slider"
+                                        oninput="this.nextElementSibling.textContent = this.value">
                                     <span class="font-bold text-purple-600 w-8 text-center text-lg">5</span>
                                 </div>
                             </div>
                             <div>
-                                <label for="pengalaman_laporan_keuangan" class="block text-sm font-medium text-gray-700 mb-1">Pernahkah kamu membuat laporan keuangan lengkap (neraca, laba rugi, arus kas)? Jelaskan.</label>
-                                <textarea id="pengalaman_laporan_keuangan" name="pengalaman_laporan_keuangan" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Ya, pernah saat bekerja di... / Belum pernah secara profesional."></textarea>
+                                <label for="mahir_jurnal" class="block text-sm font-medium text-gray-700 mb-2">Seberapa
+                                    mahir kamu menggunakan software Jurnal.id? (Skala 1-10)</label>
+                                <div class="flex items-center space-x-4">
+                                    <input type="range" id="mahir_jurnal" name="mahir_jurnal" min="1" max="10" value="5"
+                                        class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer range-slider"
+                                        oninput="this.nextElementSibling.textContent = this.value">
+                                    <span class="font-bold text-purple-600 w-8 text-center text-lg">5</span>
+                                </div>
                             </div>
                             <div>
-                                <label for="pengalaman_accounting" class="block text-sm font-medium text-gray-700 mb-1">Berapa lama pengalamanmu di bidang accounting/finance?</label>
-                                <input type="text" id="pengalaman_accounting" name="pengalaman_accounting" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Contoh: 1 tahun 6 bulan">
+                                <label for="mahir_excel" class="block text-sm font-medium text-gray-700 mb-2">Seberapa
+                                    mahir kamu menggunakan Microsoft Excel? (Skala 1-10)</label>
+                                <div class="flex items-center space-x-4">
+                                    <input type="range" id="mahir_excel" name="mahir_excel" min="1" max="10" value="5"
+                                        class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer range-slider"
+                                        oninput="this.nextElementSibling.textContent = this.value">
+                                    <span class="font-bold text-purple-600 w-8 text-center text-lg">5</span>
+                                </div>
                             </div>
                             <div>
-                                <label for="sertifikat_akuntansi" class="block text-sm font-medium text-gray-700 mb-1">Sebutkan sertifikat atau pelatihan akuntansi (jika ada).</label>
-                                <input type="text" id="sertifikat_akuntansi" name="sertifikat_akuntansi" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Brevet A & B, dll. / Tidak ada.">
+                                <label for="pengalaman_laporan_keuangan"
+                                    class="block text-sm font-medium text-gray-700 mb-1">Pernahkah kamu membuat laporan
+                                    keuangan forecasting? Jelaskan.</label>
+                                <textarea id="pengalaman_laporan_keuangan" name="pengalaman_laporan_keuangan" rows="3"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring"
+                                    placeholder="Ya, saya pernah membuat budgeting dan forecasting..."></textarea>
+                            </div>
+                            <div>
+                                <label for="pengalaman_accounting"
+                                    class="block text-sm font-medium text-gray-700 mb-1">Berapa lama pengalamanmu di
+                                    bidang accounting/finance?</label>
+                                <input type="text" id="pengalaman_accounting" name="pengalaman_accounting"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring"
+                                    placeholder="Contoh: 1 tahun 6 bulan">
+                            </div>
+                            <div>
+                                <label for="sertifikat_akuntansi"
+                                    class="block text-sm font-medium text-gray-700 mb-1">Sebutkan sertifikat atau
+                                    pelatihan akuntansi (jika ada).</label>
+                                <input type="text" id="sertifikat_akuntansi" name="sertifikat_akuntansi"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring"
+                                    placeholder="Brevet A & B, dll. / Tidak ada.">
                             </div>
                         </div>
 
                         <!-- HR Staff -->
                         <div id="section-hrstaff" class="posisi-section space-y-6" style="display: none;">
-                             <h3 class="font-semibold text-lg text-gray-800">Khusus HR Staff</h3>
+                            <h3 class="font-semibold text-lg text-gray-800">Khusus HR Staff</h3>
                             <div>
-                                <label for="proses_hr_dikuasai" class="block text-sm font-medium text-gray-700 mb-1">Apa saja proses HR yang kamu kuasai? (Rekrutmen, Payroll, BPJS, Training, dll.)</label>
-                                <input type="text" id="proses_hr_dikuasai" name="proses_hr_dikuasai" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Rekrutmen, Payroll, ...">
-                            </div>
-                             <div>
-                                <label for="pengalaman_hr" class="block text-sm font-medium text-gray-700 mb-1">Berapa lama pengalamanmu di bidang HR?</label>
-                                <input type="text" id="pengalaman_hr" name="pengalaman_hr" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Contoh: 2 tahun">
+                                <label for="proses_hr_dikuasai" class="block text-sm font-medium text-gray-700 mb-1">Apa
+                                    saja proses HR yang kamu kuasai? (Rekrutmen, Payroll, BPJS, Training, dll.)</label>
+                                <input type="text" id="proses_hr_dikuasai" name="proses_hr_dikuasai"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring"
+                                    placeholder="Rekrutmen, Payroll, ...">
                             </div>
                             <div>
-                                <label for="mahir_excel_hr" class="block text-sm font-medium text-gray-700 mb-2">Seberapa mahir kamu menggunakan Ms. Excel untuk data karyawan? (Skala 1–10)</label>
-                                 <div class="flex items-center space-x-4">
-                                    <input type="range" id="mahir_excel_hr" name="mahir_excel_hr" min="1" max="10" value="5" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer range-slider" oninput="this.nextElementSibling.textContent = this.value">
+                                <label for="pengalaman_hr" class="block text-sm font-medium text-gray-700 mb-1">Berapa
+                                    lama pengalamanmu di bidang HR?</label>
+                                <input type="text" id="pengalaman_hr" name="pengalaman_hr"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring"
+                                    placeholder="Contoh: 2 tahun">
+                            </div>
+                            <div>
+                                <label for="mahir_excel_hr"
+                                    class="block text-sm font-medium text-gray-700 mb-2">Seberapa mahir kamu menggunakan
+                                    Ms. Excel untuk data karyawan? (Skala 1–10)</label>
+                                <div class="flex items-center space-x-4">
+                                    <input type="range" id="mahir_excel_hr" name="mahir_excel_hr" min="1" max="10"
+                                        value="5"
+                                        class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer range-slider"
+                                        oninput="this.nextElementSibling.textContent = this.value">
                                     <span class="font-bold text-purple-600 w-8 text-center text-lg">5</span>
-                                 </div>
+                                </div>
                             </div>
                             <div>
-                                <label for="pengalaman_hris" class="block text-sm font-medium text-gray-700 mb-1">Apakah kamu pernah menggunakan HRIS? Sebutkan nama platformnya.</label>
-                                <input type="text" id="pengalaman_hris" name="pengalaman_hris" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Talenta, Gadjian, dll. / Belum pernah.">
+                                <label for="pengalaman_hris" class="block text-sm font-medium text-gray-700 mb-1">Apakah
+                                    kamu pernah menggunakan HRIS? Sebutkan nama platformnya.</label>
+                                <input type="text" id="pengalaman_hris" name="pengalaman_hris"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring"
+                                    placeholder="Talenta, Gadjian, dll. / Belum pernah.">
                             </div>
                         </div>
-                        
+
                         <!-- Content Creator / Editor -->
                         <div id="section-contentcreator/editor" class="posisi-section space-y-6" style="display: none;">
                             <h3 class="font-semibold text-lg text-gray-800">Khusus Content Creator / Editor</h3>
                             <div>
-                                <label for="software_editing" class="block text-sm font-medium text-gray-700 mb-1">Sebutkan software editing yang kamu kuasai (CapCut, Premiere Pro, After Effects, dll.)</label>
-                                <input type="text" id="software_editing" name="software_editing" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="CapCut, Adobe Premiere Pro, ...">
+                                <label for="software_editing"
+                                    class="block text-sm font-medium text-gray-700 mb-1">Sebutkan software editing yang
+                                    kamu kuasai (CapCut, Premiere Pro, After Effects, dll.)</label>
+                                <input type="text" id="software_editing" name="software_editing"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring"
+                                    placeholder="CapCut, Adobe Premiere Pro, ...">
                             </div>
                             <div>
-                                <label for="bidang_konten" class="block text-sm font-medium text-gray-700 mb-1">Bidang konten apa yang paling kamu kuasai? (Produk, edukasi, vlog, review, dll.)</label>
-                                <input type="text" id="bidang_konten" name="bidang_konten" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Konten edukasi dan review produk.">
+                                <label for="bidang_konten" class="block text-sm font-medium text-gray-700 mb-1">Bidang
+                                    konten apa yang paling kamu kuasai? (Produk, edukasi, vlog, review, dll.)</label>
+                                <input type="text" id="bidang_konten" name="bidang_konten"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring"
+                                    placeholder="Konten edukasi dan review produk.">
                             </div>
                             <div>
-                                <label for="link_portofolio" class="block text-sm font-medium text-gray-700 mb-1">Tautkan contoh hasil karya (video/foto/link portofolio).</label>
-                                <input type="url" id="link_portofolio" name="link_portofolio" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="https://instagram.com/karyasaya atau https://bit.ly/portofolio-anda">
+                                <label for="link_portofolio"
+                                    class="block text-sm font-medium text-gray-700 mb-1">Tautkan contoh hasil karya
+                                    (video/foto/link portofolio).</label>
+                                <input type="url" id="link_portofolio" name="link_portofolio"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring"
+                                    placeholder="https://instagram.com/karyasaya atau https://bit.ly/portofolio-anda">
                             </div>
                             <div>
-                                <label for="kekuatan_kreatif_teknis" class="block text-sm font-medium text-gray-700 mb-1">Apakah kamu lebih kuat di ide kreatif atau teknis editing?</label>
-                                <input type="text" id="kekuatan_kreatif_teknis" name="kekuatan_kreatif_teknis" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Lebih kuat di ide kreatif, tapi teknis juga bisa.">
+                                <label for="kekuatan_kreatif_teknis"
+                                    class="block text-sm font-medium text-gray-700 mb-1">Apakah kamu lebih kuat di ide
+                                    kreatif atau teknis editing?</label>
+                                <input type="text" id="kekuatan_kreatif_teknis" name="kekuatan_kreatif_teknis"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring"
+                                    placeholder="Lebih kuat di ide kreatif, tapi teknis juga bisa.">
                             </div>
                         </div>
-                        
+
                         <!-- Admin Sales -->
                         <div id="section-adminsales" class="posisi-section space-y-6" style="display: none;">
                             <h3 class="font-semibold text-lg text-gray-800">Khusus Admin Sales</h3>
                             <div>
-                                <label for="kelola_data_pelanggan" class="block text-sm font-medium text-gray-700 mb-1">Apakah kamu terbiasa mengelola data pelanggan dan membuat laporan penjualan?</label>
-                                <input type="text" id="kelola_data_pelanggan" name="kelola_data_pelanggan" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Ya, sangat terbiasa. / Belum terlalu.">
+                                <label for="kelola_data_pelanggan"
+                                    class="block text-sm font-medium text-gray-700 mb-1">Apakah kamu terbiasa mengelola
+                                    data pelanggan dan membuat laporan penjualan?</label>
+                                <input type="text" id="kelola_data_pelanggan" name="kelola_data_pelanggan"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring"
+                                    placeholder="Ya, sangat terbiasa. / Belum terlalu.">
                             </div>
                             <div>
-                                <label for="kuasai_software_admin" class="block text-sm font-medium text-gray-700 mb-1">Seberapa cepat kamu menguasai software administrasi (Excel, Spreadsheet, CRM)?</label>
-                                <input type="text" id="kuasai_software_admin" name="kuasai_software_admin" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Sangat cepat, biasanya 1-2 hari sudah paham dasar.">
+                                <label for="kuasai_software_admin"
+                                    class="block text-sm font-medium text-gray-700 mb-1">Seberapa cepat kamu menguasai
+                                    software administrasi (Excel, Spreadsheet, CRM)?</label>
+                                <input type="text" id="kuasai_software_admin" name="kuasai_software_admin"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring"
+                                    placeholder="Sangat cepat, biasanya 1-2 hari sudah paham dasar.">
                             </div>
                             <div>
-                                <label for="pengalaman_bantu_sales" class="block text-sm font-medium text-gray-700 mb-1">Ceritakan pengalamanmu dalam membantu tim sales.</label>
-                                <textarea id="pengalaman_bantu_sales" name="pengalaman_bantu_sales" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Saya biasa menyiapkan data prospek, follow up..."></textarea>
+                                <label for="pengalaman_bantu_sales"
+                                    class="block text-sm font-medium text-gray-700 mb-1">Ceritakan pengalamanmu dalam
+                                    membantu tim sales.</label>
+                                <textarea id="pengalaman_bantu_sales" name="pengalaman_bantu_sales" rows="3"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring"
+                                    placeholder="Saya biasa menyiapkan data prospek, follow up..."></textarea>
                             </div>
                         </div>
-                        
+
                         <!-- Sales -->
                         <div id="section-sales" class="posisi-section space-y-6" style="display: none;">
-                             <h3 class="font-semibold text-lg text-gray-800">Khusus Sales</h3>
+                            <h3 class="font-semibold text-lg text-gray-800">Khusus Sales</h3>
                             <div>
-                                <label for="pengalaman_sales_jenis" class="block text-sm font-medium text-gray-700 mb-1">Apakah kamu memiliki pengalaman door-to-door, telesales, atau B2B?</label>
-                                <input type="text" id="pengalaman_sales_jenis" name="pengalaman_sales_jenis" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Ya, pengalaman di telesales selama 1 tahun.">
+                                <label for="pengalaman_sales_jenis"
+                                    class="block text-sm font-medium text-gray-700 mb-1">Apakah kamu memiliki pengalaman
+                                    door-to-door, telesales, atau B2B?</label>
+                                <input type="text" id="pengalaman_sales_jenis" name="pengalaman_sales_jenis"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring"
+                                    placeholder="Ya, pengalaman di telesales selama 1 tahun.">
                             </div>
                             <div>
-                                <label for="target_penjualan" class="block text-sm font-medium text-gray-700 mb-1">Seberapa besar target penjualan tertinggi yang pernah kamu capai?</label>
-                                <input type="text" id="target_penjualan" name="target_penjualan" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Rp 100.000.000 dalam sebulan.">
+                                <label for="target_penjualan"
+                                    class="block text-sm font-medium text-gray-700 mb-1">Seberapa besar target penjualan
+                                    tertinggi yang pernah kamu capai?</label>
+                                <input type="text" id="target_penjualan" name="target_penjualan"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring"
+                                    placeholder="Rp 100.000.000 dalam sebulan.">
                             </div>
                             <div>
-                                <label for="punya_kendaraan" class="block text-sm font-medium text-gray-700 mb-1">Apakah kamu memiliki kendaraan pribadi untuk mobilitas?</label>
-                                <input type="text" id="punya_kendaraan" name="punya_kendaraan" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Ya, motor. / Tidak ada.">
+                                <label for="punya_kendaraan" class="block text-sm font-medium text-gray-700 mb-1">Apakah
+                                    kamu memiliki kendaraan pribadi untuk mobilitas?</label>
+                                <input type="text" id="punya_kendaraan" name="punya_kendaraan"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring"
+                                    placeholder="Ya, motor. / Tidak ada.">
                             </div>
                             <div>
-                                <label for="hadapi_penolakan" class="block text-sm font-medium text-gray-700 mb-1">Bagaimana caramu menghadapi penolakan pelanggan?</label>
-                                <textarea id="hadapi_penolakan" name="hadapi_penolakan" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Tetap tenang, mendengarkan alasannya, dan mencoba..."></textarea>
+                                <label for="hadapi_penolakan"
+                                    class="block text-sm font-medium text-gray-700 mb-1">Bagaimana caramu menghadapi
+                                    penolakan pelanggan?</label>
+                                <textarea id="hadapi_penolakan" name="hadapi_penolakan" rows="3"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring"
+                                    placeholder="Tetap tenang, mendengarkan alasannya, dan mencoba..."></textarea>
                             </div>
                         </div>
-                        
+
                         <!-- Back Office (Office Boy) -->
                         <div id="section-backoffice(officeboy)" class="posisi-section space-y-6" style="display: none;">
-                             <h3 class="font-semibold text-lg text-gray-800">Khusus Back Office (Office Boy)</h3>
+                            <h3 class="font-semibold text-lg text-gray-800">Khusus Back Office (Office Boy)</h3>
                             <div>
-                                <label for="pengalaman_kebersihan" class="block text-sm font-medium text-gray-700 mb-1">Apakah kamu berpengalaman dalam menjaga kebersihan dan kerapian kantor?</label>
-                                <input type="text" id="pengalaman_kebersihan" name="pengalaman_kebersihan" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Ya, sudah berpengalaman 2 tahun.">
+                                <label for="pengalaman_kebersihan"
+                                    class="block text-sm font-medium text-gray-700 mb-1">Apakah kamu berpengalaman dalam
+                                    menjaga kebersihan dan kerapian kantor?</label>
+                                <input type="text" id="pengalaman_kebersihan" name="pengalaman_kebersihan"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring"
+                                    placeholder="Ya, sudah berpengalaman 2 tahun.">
                             </div>
                             <div>
-                                <label for="bisa_buat_minuman" class="block text-sm font-medium text-gray-700 mb-1">Bisakah kamu membuat kopi, teh, dan menyiapkan ruang meeting?</label>
-                                <input type="text" id="bisa_buat_minuman" name="bisa_buat_minuman" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Ya, bisa.">
+                                <label for="bisa_buat_minuman"
+                                    class="block text-sm font-medium text-gray-700 mb-1">Bisakah kamu membuat kopi, teh,
+                                    dan menyiapkan ruang meeting?</label>
+                                <input type="text" id="bisa_buat_minuman" name="bisa_buat_minuman"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring"
+                                    placeholder="Ya, bisa.">
                             </div>
                             <div>
-                                <label for="bisa_motor_kantor" class="block text-sm font-medium text-gray-700 mb-1">Apakah kamu bisa mengendarai motor untuk kebutuhan kantor?</label>
-                                <input type="text" id="bisa_motor_kantor" name="bisa_motor_kantor" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Ya, saya punya SIM C aktif.">
+                                <label for="bisa_motor_kantor"
+                                    class="block text-sm font-medium text-gray-700 mb-1">Apakah kamu bisa mengendarai
+                                    motor untuk kebutuhan kantor?</label>
+                                <input type="text" id="bisa_motor_kantor" name="bisa_motor_kantor"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring"
+                                    placeholder="Ya, saya punya SIM C aktif.">
                             </div>
                         </div>
-                        
+
                         <!-- IT Support -->
                         <div id="section-itsupport" class="posisi-section space-y-6" style="display: none;">
                             <h3 class="font-semibold text-lg text-gray-800">Khusus IT Support</h3>
                             <div>
-                                <label for="mahir_troubleshooting" class="block text-sm font-medium text-gray-700 mb-1">Seberapa mahir kamu dalam mengatasi troubleshooting PC/laptop?</label>
-                                <input type="text" id="mahir_troubleshooting" name="mahir_troubleshooting" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Sangat mahir, bisa merakit PC dan install ulang OS.">
+                                <label for="mahir_troubleshooting"
+                                    class="block text-sm font-medium text-gray-700 mb-1">Seberapa mahir kamu dalam
+                                    mengatasi troubleshooting PC/laptop?</label>
+                                <input type="text" id="mahir_troubleshooting" name="mahir_troubleshooting"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring"
+                                    placeholder="Sangat mahir, bisa merakit PC dan install ulang OS.">
                             </div>
                             <div>
-                                <label for="paham_jaringan" class="block text-sm font-medium text-gray-700 mb-1">Apakah kamu paham jaringan (LAN/WiFi)?</label>
-                                <input type="text" id="paham_jaringan" name="paham_jaringan" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Paham dasar konfigurasi router dan kabel LAN.">
+                                <label for="paham_jaringan" class="block text-sm font-medium text-gray-700 mb-1">Apakah
+                                    kamu paham jaringan (LAN/WiFi)?</label>
+                                <input type="text" id="paham_jaringan" name="paham_jaringan"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring"
+                                    placeholder="Paham dasar konfigurasi router dan kabel LAN.">
                             </div>
-                             <div>
-                                <label for="pengalaman_monitoring_tools" class="block text-sm font-medium text-gray-700 mb-1">Pernahkah kamu menggunakan tools monitoring sistem?</label>
-                                <input type="text" id="pengalaman_monitoring_tools" name="pengalaman_monitoring_tools" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring" placeholder="Pernah, menggunakan Zabbix. / Belum pernah.">
+                            <div>
+                                <label for="pengalaman_monitoring_tools"
+                                    class="block text-sm font-medium text-gray-700 mb-1">Pernahkah kamu menggunakan
+                                    tools monitoring sistem?</label>
+                                <input type="text" id="pengalaman_monitoring_tools" name="pengalaman_monitoring_tools"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus-ring"
+                                    placeholder="Pernah, menggunakan Zabbix. / Belum pernah.">
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
-                
+
                 <!-- Navigation Buttons -->
                 <div class="flex justify-between mt-10">
-                    <button type="button" id="prevBtn" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-6 rounded-lg transition-colors duration-200 flex items-center" style="display: none;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left mr-2 h-5 w-5"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+                    <button type="button" id="prevBtn"
+                        class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-6 rounded-lg transition-colors duration-200 flex items-center"
+                        style="display: none;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-arrow-left mr-2 h-5 w-5">
+                            <path d="m12 19-7-7 7-7" />
+                            <path d="M19 12H5" />
+                        </svg>
                         Sebelumnya
                     </button>
-                    <button type="button" id="nextBtn" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-6 rounded-lg transition-colors duration-200 flex items-center ml-auto">
+                    <button type="button" id="nextBtn"
+                        class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-6 rounded-lg transition-colors duration-200 flex items-center ml-auto">
                         Berikutnya
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right ml-2 h-5 w-5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-arrow-right ml-2 h-5 w-5">
+                            <path d="M5 12h14" />
+                            <path d="m12 5 7 7-7 7" />
+                        </svg>
                     </button>
-                    <button type="submit" id="submitBtn" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-6 rounded-lg transition-colors duration-200" style="display: none;">Kirim Jawaban</button>
+                    <button type="submit" id="submitBtn"
+                        class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-6 rounded-lg transition-colors duration-200"
+                        style="display: none;">Kirim Jawaban</button>
                 </div>
             </form>
         </div>
@@ -431,13 +665,13 @@
         document.addEventListener('DOMContentLoaded', function () {
             // GANTI DENGAN URL DEPLOYMENT GOOGLE APPS SCRIPT ANDA
             const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby4L6DCH4BmyA4kbHhqpA6XweD14Mdrk_S9v28ps1RSrWw0dIsD76iZi-SP7_tPq_wq/exec';
-            
+
             const form = document.getElementById('screeningForm');
             const steps = Array.from(document.querySelectorAll('.form-step'));
             const nextBtn = document.getElementById('nextBtn');
             const prevBtn = document.getElementById('prevBtn');
             const submitBtn = document.getElementById('submitBtn');
-            
+
             let currentStep = 0;
 
             // Initialize Flatpickr
@@ -460,7 +694,7 @@
                 });
                 updateUI();
             };
-            
+
             const updateUI = () => {
                 prevBtn.style.display = currentStep > 0 ? 'flex' : 'none';
                 nextBtn.style.display = currentStep < steps.length - 1 ? 'flex' : 'none';
@@ -473,7 +707,7 @@
                     const indicatorDiv = document.getElementById(`step-indicator-${i}`).querySelector('div');
                     const indicatorText = document.getElementById(`step-indicator-${i}`).querySelector('p');
                     if (i - 1 < currentStep) {
-                         // Completed step
+                        // Completed step
                         indicatorDiv.classList.remove('bg-purple-600', 'bg-gray-200');
                         indicatorDiv.classList.add('bg-green-500');
                         indicatorDiv.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check"><path d="M20 6 9 17l-5-5"/></svg>`;
@@ -498,38 +732,38 @@
                     if (i <= 2) { // Progress bars
                         const progressBar = document.getElementById(`progress-bar-${i}`);
                         if (i - 1 < currentStep) {
-                             progressBar.classList.remove('border-gray-200');
-                             progressBar.classList.add('border-purple-600');
+                            progressBar.classList.remove('border-gray-200');
+                            progressBar.classList.add('border-purple-600');
                         } else {
-                             progressBar.classList.remove('border-purple-600');
-                             progressBar.classList.add('border-gray-200');
+                            progressBar.classList.remove('border-purple-600');
+                            progressBar.classList.add('border-gray-200');
                         }
                     }
                 }
             };
-            
+
             const validateStep = (stepIndex) => {
                 const currentStepDiv = steps[stepIndex];
                 const inputs = currentStepDiv.querySelectorAll('input:not([disabled])[required], select:not([disabled])[required], textarea:not([disabled])[required]');
                 let isValid = true;
-                
+
                 inputs.forEach(input => {
                     let isInputValid = true;
-                    if(input.type === 'radio') {
+                    if (input.type === 'radio') {
                         const radioGroup = document.querySelectorAll(`input[name="${input.name}"]`);
-                        if(!Array.from(radioGroup).some(r => r.checked)) {
-                           isInputValid = false;
+                        if (!Array.from(radioGroup).some(r => r.checked)) {
+                            isInputValid = false;
                         }
                     } else {
-                         if (!input.value.trim()) {
+                        if (!input.value.trim()) {
                             isInputValid = false;
                         }
                     }
-                     
+
                     if (input.type === 'email' && !input.checkValidity()) {
                         isInputValid = false;
                     }
-                    
+
                     if (!isInputValid) {
                         isValid = false;
                         input.classList.add('border-red-500');
@@ -539,7 +773,7 @@
                         input.classList.add('border-gray-300');
                     }
                 });
-                
+
                 return isValid;
             };
 
@@ -550,7 +784,7 @@
                         showStep(currentStep);
                     }
                 } else {
-                     Swal.fire({
+                    Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
                         text: 'Harap isi semua kolom yang wajib diisi pada langkah ini.',
@@ -558,7 +792,7 @@
                     });
                 }
             });
-            
+
             prevBtn.addEventListener('click', () => {
                 currentStep--;
                 if (currentStep >= 0) {
@@ -569,7 +803,7 @@
             form.addEventListener('submit', function (e) {
                 e.preventDefault();
                 if (!validateStep(currentStep)) {
-                     Swal.fire({
+                    Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
                         text: 'Harap isi semua kolom yang wajib diisi pada langkah ini.',
@@ -588,7 +822,7 @@
                 });
 
                 const formData = new FormData(this);
-                
+
                 let phone = formData.get('nomor_hp').replace(/[^0-9]/g, '');
                 if (phone.startsWith('0')) { phone = phone.substring(1); }
                 formData.set('nomor_hp', `+62${phone}`);
@@ -597,38 +831,38 @@
                     method: 'POST',
                     body: formData
                 })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.result === 'success') {
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.result === 'success') {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Berhasil!',
+                                text: 'Terima kasih, data Anda telah berhasil kami terima.',
+                                confirmButtonColor: '#8B5CF6'
+                            });
+                            form.reset();
+                            currentStep = 0;
+                            showStep(0);
+                            // Hide all dynamic sections again after reset
+                            document.querySelectorAll(".posisi-section").forEach(sec => sec.style.display = "none");
+                        } else {
+                            throw new Error(data.message || 'Terjadi kesalahan.');
+                        }
+                    })
+                    .catch(error => {
                         Swal.fire({
-                            icon: 'success',
-                            title: 'Berhasil!',
-                            text: 'Terima kasih, data Anda telah berhasil kami terima.',
-                            confirmButtonColor: '#8B5CF6'
+                            icon: 'error',
+                            title: 'Gagal Mengirim',
+                            text: `Terjadi kesalahan saat mengirim data: ${error.message}. Silakan coba lagi.`,
+                            confirmButtonColor: '#FBBF24'
                         });
-                        form.reset();
-                        currentStep = 0;
-                        showStep(0);
-                        // Hide all dynamic sections again after reset
-                        document.querySelectorAll(".posisi-section").forEach(sec => sec.style.display = "none");
-                    } else {
-                        throw new Error(data.message || 'Terjadi kesalahan.');
-                    }
-                })
-                .catch(error => {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Gagal Mengirim',
-                        text: `Terjadi kesalahan saat mengirim data: ${error.message}. Silakan coba lagi.`,
-                        confirmButtonColor: '#FBBF24'
                     });
-                });
             });
-            
+
             // --- SCRIPT LOGIKA DINAMIS UNTUK POSISI ---
-            document.getElementById("posisi").addEventListener("change", function() {
+            document.getElementById("posisi").addEventListener("change", function () {
                 const posisi = this.value;
-                
+
                 // Sembunyikan dan non-aktifkan semua input di section spesifik
                 document.querySelectorAll(".posisi-section").forEach(sec => {
                     sec.style.display = "none";
@@ -649,23 +883,23 @@
                         el.querySelectorAll('input, textarea, select').forEach(input => {
                             input.disabled = false;
                             // Tambahkan 'required' jika elemen aslinya punya atribut tersebut
-                            if(input.hasAttribute('data-required')) {
-                               input.required = true;
+                            if (input.hasAttribute('data-required')) {
+                                input.required = true;
                             }
                         });
-                        
+
                         // Animasi
-                        gsap.fromTo(el, {opacity: 0, y: 20}, {opacity: 1, y: 0, duration: 0.5});
+                        gsap.fromTo(el, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5 });
                     }
                 }
             });
-            
+
             // Inisialisasi: pastikan semua section dinamis dinonaktifkan saat pertama kali load
             document.querySelectorAll(".posisi-section").forEach(sec => {
                 sec.querySelectorAll('input, textarea, select').forEach(input => {
                     input.disabled = true;
                     // Simpan status 'required' asli di atribut data-*
-                    if(input.required) {
+                    if (input.required) {
                         input.setAttribute('data-required', 'true');
                         input.required = false;
                     }
@@ -677,4 +911,5 @@
         });
     </script>
 </body>
+
 </html>
